@@ -1,0 +1,80 @@
+SELECT count(*) FROM modorg;
++----------+
+| count(*) |
++----------+
+|       10 |
++----------+
+
+
+mysql> SELECT count(nchr) FROM modorg;
++-------------+
+| count(nchr) |
++-------------+
+|           9 |
++-------------+
+--> nulvalues worden niet meegeteld
+
+mysql> SELECT count(class) FROM modorg;
++--------------+
+| count(class) |
++--------------+
+|           10 |
++--------------+
+--> bevat geen nul dus alles geteld
+
+mysql> SELECT count(DISTINCT class) FROM modorg;
++-----------------------+
+| count(DISTINCT class) |
++-----------------------+
+|                     6 |
++-----------------------+
+--> de verschillende klassen worden geteld
+
+TEL ALLE ZOOGDIEREN
+
+mysql> SELECT count(*) FROM modorg WHERE class='Mammals';
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+
+TEL AANTAL ORGANISMEN PER KLASSE
+mysql> SELECT class, count(*) FROM modorg GROUP BY class;
++------------+----------+
+| class      | count(*) |
++------------+----------+
+| Aliens     |        1 |
+| Bacteria   |        1 |
+| Fungi      |        1 |
+| Insects    |        2 |
+| Mammals    |        4 |
+| Roundworms |        1 |
++------------+----------+
+
+MIN EN MAX VAN GENOME SIZE PER CLASS, ENKEL ALS SIZE GEKEND IS EN GESORTEERD VAN GROOT NAAR KLEIN
+SELECT class,min(gsize) AS min, max(gsize) AS max FROM modorg WHERE gsize IS NOT NULL GROUP BY class ORDER BY max desc;
++------------+-------+-------+
+| class      | min   | max   |
++------------+-------+-------+
+| Mammals    |  2651 |  6597 |
+| Insects    |   180 |   218 |
+| Roundworms |   100 |   100 |
+| Bacteria   | 4.639 | 4.639 |
+| Fungi      | 0.672 | 0.672 |
++------------+-------+-------+
+
+VOOR IEDERE KLASSE MET MEER DAN 1 ORGANISME HET GEMIDDELDE AANTAL CHROMOSOMEN GEVEN, GROOTSTE VANBOVEN
+
+SELECT class, avg(nchr) AS avg FROM modorg GROUP BY class HAVING count(class)>1 ORDER BY avg desc;
++---------+---------+
+| class   | avg     |
++---------+---------+
+| Mammals | 22.2500 |
+| Insects | 10.0000 |
++---------+---------+
+
+
+
+
+

@@ -1,0 +1,8 @@
+CREATE TABLE `students` (
+`Student_number` int(7) NOT NULL,
+`Name` varchar(45) DEFAULT NULL,
+`Last_name` varchar(45) DEFAULT NULL,
+`Birthdate` date DEFAULT NULL,
+`Sex` enum('M', 'V') DEFAULT NULL
+PRIMARY KEY (`Student_number`));
+

@@ -1,0 +1,16 @@
+mysql> SELECT concat(genus," ", species) AS name, round(gsize/1000, 4) AS avgsize, gsize/nchr, year(draft) AS pubyear FROM modorg ORDER BY avgsize desc;
++--------------------------+---------+--------------------+---------+
+| name                     | avgsize | gsize/nchr         | pubyear |
++--------------------------+---------+--------------------+---------+
+| Rattus norvegicus        |  6.5970 | 314.14285714285717 |    2004 |
+| Gorilla gorilla          |  3.0760 | 128.16666666666666 |    2008 |
+| Homo sapiens             |  3.0380 | 132.08695652173913 |    2007 |
+| Mus musculus             |  2.6510 | 126.23809523809524 |    2010 |
+| Apis melifera            |  0.2180 |             13.625 |    2003 |
+| Drosophila melanogester  |  0.1800 |                 45 |    2000 |
+| Caenorhabditis elegans   |  0.1000 | 16.666666666666668 |    1998 |
+| Escherichia coli         |  0.0046 |              4.639 |    1997 |
+| Saccharomyces cerevisiae |  0.0007 |              0.042 |    1996 |
+| Alienus area51us         |    NULL |               NULL |    NULL |
++--------------------------+---------+--------------------+---------+
+

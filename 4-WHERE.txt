@@ -1,0 +1,14 @@
+Alle mammals met genomen van na 2005
+-->SELECT genus, species, year(draft) FROM modorg WHERE class='Mammals' and year(draft)>2005;
+
+all organisms met een gemiddelde chromosoomgrootte tussen 10 en 100
+-->SELECT genus, species, gsize/nchr AS avgsize FROM modorg WHERE gsize/nchr>10 and gsize/nchr<100;
+OF
+-->SELECT genus, species, gsize/nchr AS avgsize FROM modorg BETWEEN 10 and 100;
+
+alle organismen die met de letters A tot E beginnen
+-->SELECT * FROM modorg WHERE genus LIKE 'A%' or genus LIKE 'B%'...
+-->SELECT * FROM modorg WHERE genus RLIKE '^[A-E]';
+
+Alle klassen in alfabetiche volgorde en maar één keer het zelfde
+-->SELECT concat(genus, " ", species) FROM modorg ORDER BY desc gsize LIMIT 3;
